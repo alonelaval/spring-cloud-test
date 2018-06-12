@@ -1,0 +1,35 @@
+server:
+    port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+#    statusPageUrlPath: http://localhost:8761/info
+#    healthCheckUrlPath: http://localhost:8761/health
+
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    server:
+        enable-self-preservation: false #测试期间,关闭注册中心自我保护,可以快速清理无效的服务
+        eviction-interval-timer-in-ms: 2000 #清理间隔
+
+logging:
+    level:
+      com:
+        netflix:
+          eureka: OFF
+          discovery: OFF
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+#    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#  server:
+#    enable-self-preservation: false #测试期间,关闭注册中心自我保护,可以快速清理无效的服务
+#    eviction-interval-timer-in-ms: 2000 #清理间隔
